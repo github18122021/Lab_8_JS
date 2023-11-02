@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Object-Oriented Programming | COMP1073 Client-Side JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/normalize.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <h1>Object-Oriented Programming in JavaScript</h1>
+    <p>
+      This lesson segment will introduce how Object-Oriented Programming (OOP)
+      is emulated using JavaScript - OOJS (Object-Oriented JavaScript).
+    </p>
+    <p id="output"></p>
+
+    <script>
+      var output = document.getElementById("output");
+
+      function Hamburger(options) {
+        this.bun = options.bun || "Regular Bun";
+        this.garnish = options.garnish || "Lettuce, Tomato, Onion";
+        this.cheese = options.cheese || "Cheddar";
+        this.sauce = options.sauce || "Ketchup and Mustard";
+        this.patty = options.patty || "Beef";
+        this.pattyCount = options.pattyCount || 1;
+        this.toppings = options.toppings || [];
+
+        this.getDescription = function () {
+          var toppingsString =
+            this.toppings.length > 0
+              ? this.toppings.join(", ")
+              : "No additional toppings";
+          let description = `A delicious ${this.pattyCount} ${this.patty} hamburger with ${this.cheese} cheese on a ${this.bun} bun, garnished with ${this.garnish}, and topped with ${this.sauce}, and ${toppingsString}.`;
+          output.textContent = description;
+          return description;
+        };
+      }
+
+      // Create a custom hamburger using the constructor
+      var myHamburger = new Hamburger({
+        bun: "Sesame Seed Bun",
+        garnish: "Lettuce, Tomato, Pickles, Onions",
+        cheese: "Swiss",
+        sauce: "Special Secret Sauce",
+        patty: "Chicken",
+        pattyCount: 2,
+        toppings: ["Bacon", "Mushrooms", "Hot Peppers"],
+      });
+
+      // Get and set the description of the custom hamburger
+      var description = myHamburger.getDescription();
+      //   console.log(description);
+    </script>
+  </body>
+</html>
